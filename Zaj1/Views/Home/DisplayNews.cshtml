@@ -1,0 +1,28 @@
+﻿@model IEnumerable<RssItem>
+
+<div class="container">
+    <div class="row">
+
+@foreach (var item in Model)
+{
+        <div class="col-12 col-sm-12 col-md-4">
+    <h3>@item.Title</h3>
+    <p>@item.PubDate</p>
+    <p>@Html.Raw(item.Description)</p>
+        </div>
+}
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item" @(i == ViewBag.CurrentPage ? "class=active" : "")><a class="page-link" href="@Url.Action("DisplayNews", new { page = i })"> @i </a></li>
+                }
+
+
+            </ul>
+        </nav>
+ 
+
+
